@@ -3,7 +3,7 @@
 인터랙션 구현 역량을 보여주기 위해 제작한 미니 프로젝트입니다.
 다섯 가지 데모를 통해 다양한 UI 효과를 직접 구현했습니다.
 
-사이트 보기 : https://hangw1231.github.io/JS-Motion-Mini-Lab/(https://hangw1231.github.io/JS-Motion-Mini-Lab/)
+사이트 보기 : https://hangw1231.github.io/JS-Motion-Mini-Lab/
 
 ---
 
