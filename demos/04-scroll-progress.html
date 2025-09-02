@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>스크롤 프로그레스바</title>
     <link rel="stylesheet" href="../css/lab.css">
+    <script src="../js/04-scroll-progress.js" defer></script>
     <style>
         .progress {
             position: fixed;
@@ -37,20 +38,6 @@
         <div class="space"></div>
     </main>
 
-    <script>
-        const bar = document.getElementById('progress');
-        const update = () => {
-            const h = document.documentElement;
-            const max = h.scrollHeight - h.clientHeight;
-            const r = max > 0 ? (h.scrollTop / max) : 0;
-            bar.style.transform = `scaleX(${Math.min(1, Math.max(0, r))})`;
-        };
-        
-        document.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-        
-        update();
-    </script>
 </body>
 
 </html>
