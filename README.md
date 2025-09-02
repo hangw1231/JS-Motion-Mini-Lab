@@ -7,22 +7,23 @@
 
 ## 📂 프로젝트 구조
 
-/css
- - lab.css
-/demos
- - 01-scroll-reveal.html : 스크롤 진입 시 요소 등장
- - 02-custom-cursor.html : 커스텀 마우스 커서 + hover 효과
- - 03-carousel-a11y.html : 접근성 있는 캐러셀 (버튼/도트/키보드/스와이프)
- - 04-scroll-progress.html : 상단 스크롤 진행도 트랙
- - 05-three-rotating-cube.html : Three.js 회전 큐브 (WebGL)
-/js
- - 01-scroll-reveal.js
- - 02-custom-cursor.js
- - 03-carousel-a11y.js
- - 04-scroll-progress.js
- - 05-three-rotating-cube.js
-index.html
-
+JS-Motion-Mini-Lab/
+├─ index.html
+├─ lab/
+│  └─ lab.css
+├─ demos/
+│  ├─ 01-scroll-reveal.html : 스크롤 진입 시 요소 등장
+│  ├─ 02-custom-cursor.html : 커스텀 마우스 커서 + hover 효과
+│  ├─ 03-carousel-a11y.html : 접근성 있는 캐러셀 (버튼/도트/키보드/스와이프)
+│  ├─ 04-scroll-progress.html : 상단 스크롤 진행도 트랙
+│  └─ 05-three-rotating-cube.html : Three.js 회전 큐브 (WebGL)
+├─ js/
+│  ├─ 01-scroll-reveal.js
+│  ├─ 02-custom-cursor.js
+│  ├─ 03-carousel-a11y.js
+│  ├─ 04-scroll-progress.js
+│  └─ 05-three-rotating-cube.js
+└─ README.md
 ---
 
 ## 🧩 포함된 데모
