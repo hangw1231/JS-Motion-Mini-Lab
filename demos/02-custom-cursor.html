@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커스텀 커서 + Hover 효과</title>
+    <link rel="stylesheet" href="../css/lab.css">
+    <style>
+        .cursor {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #79ffe1;
+            border-radius: 999px;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width .2s ease, height .2s ease, background .2s ease, border-color .2s ease;
+            mix-blend-mode: exclusion;
+            z-index: 60;
+        }
+
+        .cursor.-hide {
+            opacity: 0;
+        }
+
+        .cursor.-hover {
+            width: 46px;
+            height: 46px;
+            background: rgba(121, 255, 225, .15);
+            border-color: #7aa2ff;
+        }
+
+        [data-cursor="hover"] {
+            position: relative;
+        }
+
+        .demo {
+            display: grid;
+            gap: 50px;
+        }
+
+        .demo > * {
+            border: 1px dashed #2a2f3b;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .demo > button {
+            cursor: pointer;
+        }
+        .demo > a {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <p class="return"><a href="../index.html">← 돌아가기</a></p>
+        <h1>02 · Custom Cursor</h1>
+        <p class="lead">마우스를 따라다니는 커스텀 커서. data-cursor="hover"에 반응</p>
+
+
+        <div class="demo">
+            <button data-cursor="hover">버튼 위에서 커서 확대</button>
+            <a href="#" data-cursor="hover">링크 위에서도 강조</a>
+            <div data-cursor="hover">블록 영역 호버</div>
+        </div>
+    </main>
+
+    <script>
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor';
+        document.body.appendChild(cursor);
+
+
+        let isTouch = false;
+        window.addEventListener('touchstart', () => {
+            isTouch = true;
+            cursor.classList.add('-hide');
+        },
+        {
+            passive: true
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isTouch) return;
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+
+        const set = new Set();
+        const enter = () => cursor.classList.add('-hover');
+        const leave = () => cursor.classList.remove('-hover');
+        document.querySelectorAll('[data-cursor="hover"]').forEach(el => {
+            set.add(el);
+            el.addEventListener('mouseenter', enter);
+            el.addEventListener('mouseleave', leave);
+        });
+
+
+        document.addEventListener('focusin', (e) => {
+            if (set.has(e.target)) enter();
+        });
+        
+        document.addEventListener('focusout', (e) => {
+            if (set.has(e.target)) leave();
+        });
+    </script>
+</body>
+
+</html>

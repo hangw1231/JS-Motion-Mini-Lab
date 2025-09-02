@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤 트리거 애니메이션</title>
+    <link rel="stylesheet" href="../css/lab.css">
+    <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                transition: none;
+            }
+        }
+
+        .box {
+            background: #0f1115;
+            border: 1px solid #222633;
+            border-radius: 12px;
+            padding: 100px 18px;
+            min-height: 100px;
+            margin: 100px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <p class="return"><a href="../index.html">← 돌아가기</a></p>
+        <h1>01 · Scroll Reveal</h1>
+        <p class="lead">IntersectionObserver로 뷰포트 진입 시 요소 등장</p>
+
+
+        <div style="height:16vh"></div>
+        <div class="box reveal">첫 블록</div>
+        <div class="box reveal">두 번째 블록</div>
+        <div class="box reveal">세 번째 블록</div>
+        <div class="box reveal">네 번째 블록</div>
+        <div style="height:16vh"></div>
+    </main>
+
+    <script>
+        const els = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+            els.forEach(el => el.classList.add('is-visible'));
+        } else {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => e.target.classList.toggle('is-visible', e.isIntersecting));
+            },
+            {
+                root: null,
+                threshold: .15
+            });
+            els.forEach(el => io.observe(el));
+        }
+    </script>
+</body>
+
+</html>

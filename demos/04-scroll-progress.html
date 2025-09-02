@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤 프로그레스바</title>
+    <link rel="stylesheet" href="../css/lab.css">
+    <style>
+        .progress {
+            position: fixed;
+            inset: 0 0 auto 0;
+            height: 4px;
+            background: linear-gradient(90deg, #79ffe1, #7aa2ff);
+            transform-origin: left center;
+            transform: scaleX(0);
+            z-index: 50
+        }
+
+        .space {
+            height: 70vh
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress" id="progress"></div>
+    <main class="wrap">
+        <p class="return"><a href="../index.html">← 돌아가기</a></p>
+        <h1>04 · Scroll Progress</h1>
+        <p class="lead">스크롤 진행도에 따라 상단 트랙이 채워집니다.</p>
+
+
+        <div class="space"></div>
+        <p>스크롤을 내려보세요.</p>
+        <div class="space"></div>
+        <div class="space"></div>
+    </main>
+
+    <script>
+        const bar = document.getElementById('progress');
+        const update = () => {
+            const h = document.documentElement;
+            const max = h.scrollHeight - h.clientHeight;
+            const r = max > 0 ? (h.scrollTop / max) : 0;
+            bar.style.transform = `scaleX(${Math.min(1, Math.max(0, r))})`;
+        };
+        
+        document.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        
+        update();
+    </script>
+</body>
+
+</html>
